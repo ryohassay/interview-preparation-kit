@@ -14,21 +14,17 @@ import sys
 
 def minimumBribes(q):
     # Write your code here
-    size = len(q)
-    swaps = [0] * size
     num_swaps = 0
-    for i in range(size):
-        for j in range(size - i - 1):
-            if q[j] > q[j+1]:
-                q[j], q[j+1] = q[j+1], q[j]
-                swaps[q[j+1]-1] += 1
-                num_swaps += 1
-
-    if max(swaps) > 2:
-        print('Too chaotic')
-    else:
-        print(num_swaps)
-
+    for i in range(len(q) - 1):
+        orig_pos = q[i] - 1
+        if orig_pos - i > 2:
+            print('Too chaotic')
+            return
+        else:
+            for j in range(i + 1, len(q)):
+                if q[i] > q[j]:
+                    num_swaps += 1
+    print(num_swaps)
 
 if __name__ == '__main__':
     t = int(input().strip())
