@@ -16,12 +16,12 @@ import sys
 def minimumAbsoluteDifference(arr):
     # Write your code here
     size = len(arr)
-    min = abs(arr[0] - arr[1])
-    for i in range(size - 1):
-        for j in range(i + 1, size):
-            diff = abs(arr[i] - arr[j])
-            if diff < min:
-                min = diff
+    arr.sort()
+    min = arr[1] - arr[0]
+    for i in range(1, size - 1):
+        diff = arr[i+1] - arr[i]
+        if diff < min:
+            min = diff
     return min
 
 if __name__ == '__main__':
