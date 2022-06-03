@@ -8,13 +8,15 @@ import sys
 
 # Complete the minimumSwaps function below.
 def minimumSwaps(arr):
+    idx_dict = {val: i for i, val in enumerate(arr)}
     count = 0
-    for i in range(len(arr)):
-        local_max = len(arr) - i
-        for j in range(local_max):
-            if arr[j] == local_max and j != local_max - 1:
-                arr[local_max - 1], arr[j] = arr[j], arr[local_max - 1]
-                count += 1
+    for i, val in enumerate(arr):
+        orig_val = i + 1
+        if val != orig_val:
+            arr[idx_dict[orig_val]], arr[i] = arr[i], arr[idx_dict[orig_val]]
+            idx_dict[orig_val], idx_dict[val] = idx_dict[val], idx_dict[orig_val]
+            count += 1
+
     return count
 
 if __name__ == '__main__':
